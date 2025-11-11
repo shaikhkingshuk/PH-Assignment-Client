@@ -13,7 +13,7 @@ function App() {
   // Toggle theme
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
-  };
+  }; 
   return (
     <>
       {/* <input
