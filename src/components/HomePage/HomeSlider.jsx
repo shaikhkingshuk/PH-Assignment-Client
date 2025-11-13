@@ -35,7 +35,7 @@ const HomeSlider = () => {
       {width > 0 && (
         <SimpleImageSlider
           width={width}
-          height={Math.max(250, width * 0.4)} // height scales with width but not too small
+          height={Math.max(250, width * 0.35)} // height scales with width but not too small
           images={images}
           showBullets={true}
           showNavs={true}
