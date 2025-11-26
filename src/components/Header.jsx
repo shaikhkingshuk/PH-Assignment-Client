@@ -1,18 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../context/AuthContext";
 
 const Header = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-
+  const { toggleTheme } = useContext(AuthContext);
   return (
     <div className="navbar ">
       <div className="navbar-start">

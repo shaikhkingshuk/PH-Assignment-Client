@@ -3,6 +3,7 @@ import RecentProperty from "./RecentProperty";
 
 const RecentProperties = ({ data }) => {
   const [recentData, setRecentData] = useState([]);
+  console.log(data);
 
   useEffect(() => {
     const fetchData = async () => {

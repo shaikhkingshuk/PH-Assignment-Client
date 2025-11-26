@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../pages/Home";
 import AllProducts from "../pages/AllProducts";
+import ViewProperty from "../components/ViewProperty";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/AllProducts",
         element: <AllProducts></AllProducts>,
+      },
+      {
+        path: "/property/:propertyId",
+        element: <ViewProperty></ViewProperty>,
       },
     ],
   },

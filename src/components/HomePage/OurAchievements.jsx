@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const OurAchievements = () => {
+  const { theme } = useContext(AuthContext);
   return (
-    <div className="w-full bg-base-200 rounded-2xl py-16 px-6 md:px-12 lg:px-20">
+    <div
+      className={`w-full ${
+        theme === "light" ? "bg-zinc-900/20" : "bg-zinc-900/60 "
+      } rounded-2xl py-16 px-6 md:px-12 lg:px-20`}
+    >
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl font-bold text-base-300 mb-4">
           Our <span className="text-blue-700">Achievements</span>

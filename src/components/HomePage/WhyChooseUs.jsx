@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const WhyChooseUs = () => {
+  const { theme } = useContext(AuthContext);
   return (
-    <div className="w-full py-16 px-6 md:px-12 lg:px-20">
+    <div
+      className={`w-full py-16 px-6 md:px-12 lg:px-20   ${
+        theme === "light" ? "bg-white/50" : "bg-black/50 "
+      } `}
+    >
       <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10">
         <div className="flex-1 text-center md:text-left">
           <h2 className="text-4xl md:text-5xl font-bold text-base-300 mb-6">
