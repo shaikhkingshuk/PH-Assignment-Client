@@ -90,10 +90,7 @@ const ViewProperty = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            {/* $
-            {theme === "light"
-              ? "bg-white/50"
-              : "bg-zinc-950/20 backdrop-blur-lg "} */}
+            
             <div
               className={`w-full md:w-1/2 p-6 md:p-10 border-y-2 border-zinc-500/20  ${
                 theme === "light" ? "bg-white/5  " : "bg-zinc-950/80 "

@@ -3,6 +3,7 @@ import MainLayout from "../Layouts/MainLayout";
 import Home from "../pages/Home";
 import AllProducts from "../pages/AllProducts";
 import ViewProperty from "../components/ViewProperty";
+import AddProperty from "../components/AddProperty";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/property/:propertyId",
         element: <ViewProperty></ViewProperty>,
+      },
+      {
+        path: "/addProperty",
+        element: <AddProperty></AddProperty>,
       },
     ],
   },
