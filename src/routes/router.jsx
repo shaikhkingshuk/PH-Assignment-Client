@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import AllProducts from "../pages/AllProducts";
 import ViewProperty from "../components/ViewProperty";
 import AddProperty from "../components/AddProperty";
+import MyProperties from "../components/MyProperties";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/addProperty",
         element: <AddProperty></AddProperty>,
+      },
+      {
+        path: "/myProperties",
+        element: <MyProperties></MyProperties>,
       },
     ],
   },
