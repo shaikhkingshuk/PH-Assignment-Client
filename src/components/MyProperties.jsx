@@ -13,6 +13,26 @@ const MyProperties = () => {
       .catch((err) => console.log(err));
   }, [user]);
 
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure?");
+    if (!confirmDelete) return;
+
+    try {
+      const res = await fetch(`http://localhost:3000/properties/${id}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+      console.log(data);
+      if (data.deletedCount > 0) {
+        setProperties(properties.filter((p) => p._id !== id));
+        alert("Deleted!");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="w-full p-4 md:p-10">
       <h1 className="text-2xl font-bold mb-6 text-center">
@@ -58,23 +78,26 @@ const MyProperties = () => {
                   {new Date(p.posted_date).toLocaleDateString()}
                 </td>
 
-                <td className="p-3 border border-gray-400">
+                <td className="p-3 border">
                   <div className="flex flex-wrap gap-2">
                     <Link
-                      to="/"
+                      to={`/property/${p._id}`}
                       className="px-3 py-1 rounded bg-blue-600 text-white hover:bg-blue-700 text-sm"
                     >
                       View
                     </Link>
 
                     <Link
-                      to="/"
+                      to={`/updateProperty/${p._id}`}
                       className="px-3 py-1 rounded bg-green-600 text-white hover:bg-green-700 text-sm"
                     >
                       Update
                     </Link>
 
-                    <button className="px-3 py-1 rounded bg-red-600 text-white hover:bg-red-700 text-sm">
+                    <button
+                      onClick={() => handleDelete(p._id)}
+                      className="px-3 py-1 rounded bg-red-600 text-white hover:bg-red-700 text-sm"
+                    >
                       Delete
                     </button>
                   </div>
