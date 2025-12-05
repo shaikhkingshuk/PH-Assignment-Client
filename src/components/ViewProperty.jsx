@@ -34,6 +34,7 @@ const ViewProperty = () => {
 
     const reviewData = {
       reviewer_name: user?.displayName || "Anonymous",
+      property_owner: data.user_email,
       property_image: data.image || "",
       property_name: data.property_name,
       property_Id: propertyId,
@@ -90,7 +91,7 @@ const ViewProperty = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            
+
             <div
               className={`w-full md:w-1/2 p-6 md:p-10 border-y-2 border-zinc-500/20  ${
                 theme === "light" ? "bg-white/5  " : "bg-zinc-950/80 "

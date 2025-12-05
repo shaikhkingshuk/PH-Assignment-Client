@@ -6,6 +6,7 @@ import ViewProperty from "../components/ViewProperty";
 import AddProperty from "../components/AddProperty";
 import MyProperties from "../components/MyProperties";
 import UpdateProperty from "../components/UpdateProperty";
+import RatingsList from "../components/RatingsList";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/updateProperty/:propertyId",
         element: <UpdateProperty></UpdateProperty>,
+      },
+      {
+        path: "/myPropertyReviews",
+        element: <RatingsList></RatingsList>,
       },
     ],
   },

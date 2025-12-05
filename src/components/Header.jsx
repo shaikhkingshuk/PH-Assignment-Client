@@ -42,7 +42,7 @@ const Header = () => {
               <NavLink to="/myProperties">My Properties</NavLink>
             </li>
             <li>
-              <NavLink to="/">My Ratings</NavLink>
+              <NavLink to="/myPropertyReviews">My Ratings</NavLink>
             </li>
           </ul>
         </div>
@@ -64,7 +64,7 @@ const Header = () => {
             <NavLink to="/myProperties">My Properties</NavLink>
           </li>
           <li>
-            <NavLink to="/">My Ratings</NavLink>
+            <NavLink to="/myPropertyReviews">My Ratings</NavLink>
           </li>
         </ul>
       </div>
