@@ -7,6 +7,9 @@ import AddProperty from "../components/AddProperty";
 import MyProperties from "../components/MyProperties";
 import UpdateProperty from "../components/UpdateProperty";
 import RatingsList from "../components/RatingsList";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import PrivateRoute from "../privateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,23 +26,51 @@ const router = createBrowserRouter([
       },
       {
         path: "/property/:propertyId",
-        element: <ViewProperty></ViewProperty>,
+        element: (
+          <PrivateRoute>
+            <ViewProperty></ViewProperty>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addProperty",
-        element: <AddProperty></AddProperty>,
+        element: (
+          <PrivateRoute>
+            <AddProperty></AddProperty>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myProperties",
-        element: <MyProperties></MyProperties>,
+        element: (
+          <PrivateRoute>
+            <MyProperties></MyProperties>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/updateProperty/:propertyId",
-        element: <UpdateProperty></UpdateProperty>,
+        element: (
+          <PrivateRoute>
+            <UpdateProperty></UpdateProperty>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myPropertyReviews",
-        element: <RatingsList></RatingsList>,
+        element: (
+          <PrivateRoute>
+            <RatingsList></RatingsList>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
     ],
   },
