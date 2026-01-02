@@ -7,7 +7,11 @@ const MyProperties = () => {
   const [properties, setProperties] = useState([]);
   const borderColor = theme === "light" ? "border-gray-700" : "border-zinc-300";
   useEffect(() => {
-    fetch(`http://localhost:3000/myProperties/${user.email}`)
+    fetch(`http://localhost:3000/myProperties/${user.email}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setProperties(data))
       .catch((err) => console.log(err));

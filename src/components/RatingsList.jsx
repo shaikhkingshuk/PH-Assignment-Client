@@ -6,6 +6,8 @@ const RatingsList = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  console.log("reviews:", reviews, Array.isArray(reviews));
+
   useEffect(() => {
     if (!user?.email) return;
 
