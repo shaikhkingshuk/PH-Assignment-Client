@@ -9,16 +9,20 @@ import { AuthContext } from "../context/AuthContext";
 const MainLayout = () => {
   const { theme } = useContext(AuthContext);
   return (
-    <div
-      className="min-h-screen bg-cover bg-center"
-      style={{
-        backgroundImage: `url(${theme === "light" ? white_bg : black_bg})`,
-      }}
-    >
-      <Header></Header>
-      <Outlet></Outlet>
-      <Footer></Footer>
-    </div>
+    <>
+      <div
+        className="fixed inset-0 -z-10 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${theme === "light" ? white_bg : black_bg})`,
+        }}
+      ></div>
+
+      <div className="min-h-screen">
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
+    </>
   );
 };
 

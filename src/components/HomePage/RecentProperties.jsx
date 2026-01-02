@@ -3,6 +3,7 @@ import RecentProperty from "./RecentProperty";
 
 const RecentProperties = ({ data }) => {
   const [recentData, setRecentData] = useState([]);
+  const [loading, setLoading] = useState(true);
   console.log(data);
 
   useEffect(() => {
@@ -12,11 +13,21 @@ const RecentProperties = ({ data }) => {
         setRecentData(result);
       } catch (err) {
         console.error("Error fetching recent properties:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, [data]);
+
+  if (loading) {
+    return (
+      <div className="w-full text-center py-10 text-gray-500">
+        Loading recent properties...
+      </div>
+    );
+  }
 
   return (
     <div className="w-11/12 mx-auto my-10">
