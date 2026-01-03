@@ -24,6 +24,9 @@ const MyProperties = () => {
     try {
       const res = await fetch(`http://localhost:3000/properties/${id}`, {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${user?.accessToken}`, // add your token here
+        },
       });
 
       const data = await res.json();
@@ -38,7 +41,7 @@ const MyProperties = () => {
   };
 
   return (
-    <div className="w-full p-4 md:p-10">
+    <div className="min-h-screen w-full p-4 md:p-10">
       <h1 className="text-2xl font-bold mb-6 text-center">
         My Properties ({properties.length})
       </h1>

@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { toast } from "react-toastify";
+import logo from "../assets/logo.png";
 
 const Header = () => {
-  const { toggleTheme, user, loading } = useContext(AuthContext);
+  const { theme, toggleTheme, user, loading } = useContext(AuthContext);
   const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -20,7 +21,11 @@ const Header = () => {
   };
 
   return (
-    <div className="navbar ">
+    <div
+      className={`navbar rounded-b-2xl ${
+        theme === "light" ? "bg-zinc-900/20" : "bg-zinc-900/60 "
+      }`}
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -62,7 +67,9 @@ const Header = () => {
           </ul>
         </div>
 
-        <Link className="btn btn-ghost text-xl font-black">HomeNest</Link>
+        <Link>
+          <img src={logo} alt="Logo" className="w-10 h-10" />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -111,59 +118,37 @@ const Header = () => {
         </label>
         {!loading && user ? (
           <>
-            {/* second of the end: Avatar */}
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full">
-                <img src={user.photoURL || "/avatar.png"} alt="Profile" />
-                {console.log(user, user.photoURL)}
-              </div>
-            </div>
-
-            {/* third of the end: Dropdown */}
             <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h7"
-                  />
-                </svg>
-              </div>
+              {/* Avatar = dropdown trigger */}
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                  <img src={user.photoURL || "/avatar.png"} alt="Profile" />
+                </div>
+              </label>
 
+              {/* Dropdown content */}
               <ul
-                tabIndex={-1}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+                tabIndex={0}
+                className="
+      dropdown-content z-20 mt-3 w-56 rounded-xl p-4
+      bg-base-100/80 backdrop-blur-lg
+      shadow-lg border border-base-content/10
+    "
               >
-                <li>
-                  <h2 className="font-semibold">
+                {/* User info */}
+                <li className="pointer-events-none mb-3">
+                  <p className="font-semibold text-base">
                     {user.displayName || "User"}
-                  </h2>
+                  </p>
+                  <p className="text-sm opacity-80 break-all">{user.email}</p>
                 </li>
-                <li>
-                  <h2 className="text-sm">{user.email}</h2>
-                </li>
+
                 <li>
                   <button
                     onClick={handleLogout}
                     className="btn btn-success btn-sm w-full"
                   >
-                    Logout
+                    Log out
                   </button>
                 </li>
               </ul>

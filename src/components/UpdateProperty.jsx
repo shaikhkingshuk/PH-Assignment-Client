@@ -60,7 +60,10 @@ const UpdateProperty = () => {
         `http://localhost:3000/updateProperty/${propertyId}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${user?.accessToken}`,
+          },
           body: JSON.stringify(formData),
         }
       );

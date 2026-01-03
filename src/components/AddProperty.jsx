@@ -29,7 +29,10 @@ const AddProperty = () => {
     try {
       const res = await fetch("http://localhost:3000/addNewProperty", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${user?.accessToken}`,
+        },
         body: JSON.stringify(newProperty),
       });
 
@@ -135,10 +138,10 @@ const AddProperty = () => {
         />
         <button
           type="submit"
-          className={`btn mt-4 ${
+          className={`btn border-none mt-4 ${
             theme === "light"
-              ? "bg-blue-600 hover:bg-blue-700 text-white"
-              : "bg-pink-600 hover:bg-pink-700 text-white"
+              ? "bg-zinc-700 hover:bg-zinc-900 hover:scale-102 transition-transform text-white"
+              : "bg-blue-700 hover:bg-blue-900 hover:scale-102 transition-transform text-white"
           }`}
         >
           Add Property

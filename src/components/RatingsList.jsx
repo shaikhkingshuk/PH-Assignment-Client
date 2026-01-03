@@ -14,7 +14,12 @@ const RatingsList = () => {
     const loadRatings = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/myProductsRatings/${user.email}`
+          `http://localhost:3000/myProductsRatings/${user.email}`,
+          {
+            headers: {
+              authorization: `Bearer ${user.accessToken}`,
+            },
+          }
         );
         const data = await res.json();
         setReviews(data);
