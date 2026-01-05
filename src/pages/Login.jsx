@@ -67,17 +67,17 @@ const Login = () => {
                   <label className="label font-bold text-[15px]">
                     Password
                   </label>
-                  <div className="relative">
+                  <div className="relative w-full">
                     <input
                       type={show ? "text" : "password"}
-                      className="input pr-10 w-full"
+                      className="input w-full pr-12 relative z-10"
                       placeholder="Password"
                       name="password"
                       required
                     />
                     <span
                       onClick={() => setShow(!show)}
-                      className="absolute right-3 top-3 cursor-pointer"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 z-20 cursor-pointer text-gray-600"
                     >
                       {show ? <FaEyeSlash /> : <FaEye />}
                     </span>

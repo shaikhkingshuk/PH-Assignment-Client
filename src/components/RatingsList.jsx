@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import Spinner from "./Spinner";
+import { toast } from "react-toastify";
 
 const RatingsList = () => {
   const { user, theme } = useContext(AuthContext);
@@ -21,6 +23,23 @@ const RatingsList = () => {
             },
           }
         );
+
+        if (res.status === 401) {
+          toast.error("Please login to continue");
+          return;
+        }
+
+        if (res.status === 404) {
+          toast.error("Property not found");
+          return;
+        }
+
+        if (res.status === 403) {
+          toast.error("You are not allowed to access this data");
+          setLoading(false);
+          return;
+        }
+
         const data = await res.json();
         setReviews(data);
         setLoading(false);
@@ -32,8 +51,7 @@ const RatingsList = () => {
     loadRatings();
   }, [user]);
 
-  if (loading)
-    return <p className="text-center py-10">Loading your ratings...</p>;
+  if (loading) return <Spinner></Spinner>;
 
   return (
     <div className="min-h-screen px-6 py-10">

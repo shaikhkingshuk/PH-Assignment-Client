@@ -16,7 +16,7 @@ const Footer = () => {
     <footer
       className={`mt-16 ${
         theme === "light"
-          ? "bg-white/40 text-slate-800"
+          ? "bg-zinc-300 text-slate-800"
           : "bg-zinc-900/80 text-slate-300"
       } backdrop-blur-md`}
     >

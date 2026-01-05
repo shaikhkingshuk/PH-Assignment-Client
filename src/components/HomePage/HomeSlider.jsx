@@ -3,19 +3,19 @@ import SimpleImageSlider from "react-simple-image-slider";
 
 const slides = [
   {
-    url: "https://images.unsplash.com/photo-1560185127-6ed189bf02f4",
+    url: "/slider1.jpg",
     title: "Find Your Perfect Apartment",
     description:
       "Buy or rent verified apartments with real photos and transparent pricing.",
   },
   {
-    url: "https://images.unsplash.com/photo-1501183638710-841dd1904471",
+    url: "/slider2.jpg",
     title: "Buy & Sell Lands with Confidence",
     description:
       "Explore residential and commercial lands with location and pricing details.",
   },
   {
-    url: "https://images.unsplash.com/photo-1497366216548-37526070297c",
+    url: "/slider3.jpg",
     title: "Commercial Spaces for Business",
     description:
       "Shops, offices, and commercial properties in prime locations.",
@@ -38,7 +38,6 @@ const HomeSlider = () => {
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
-  // ✅ Guard currentIndex to always be valid
   const safeIndex =
     typeof currentIndex === "number" &&
     currentIndex >= 0 &&

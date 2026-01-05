@@ -19,6 +19,7 @@
     "react-router": "^7.9.5",
     "react-simple-image-slider": "^2.4.1",
     "react-toastify": "^11.0.5",
+    "sweetalert2": "^11.26.17",
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {

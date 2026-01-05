@@ -108,17 +108,17 @@ const Register = () => {
 
                 {/* Password */}
                 <label className="label font-bold text-[15px]">Password</label>
-                <div className="relative">
+                <div className="relative w-full">
                   <input
                     type={show ? "text" : "password"}
                     name="password"
-                    className="input w-full pr-10"
+                    className="input w-full pr-12"
                     placeholder="Password"
                     required
                   />
                   <span
                     onClick={() => setShow(!show)}
-                    className="absolute right-3 top-3 cursor-pointer"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer"
                   >
                     {show ? <FaEyeSlash size={16} /> : <FaEye size={16} />}
                   </span>

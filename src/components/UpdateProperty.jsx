@@ -1,15 +1,17 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate, useParams } from "react-router";
+import { toast } from "react-toastify";
+import Spinner from "./Spinner";
 
 const UpdateProperty = () => {
   const { propertyId } = useParams();
   const navigate = useNavigate();
   const { user, theme } = useContext(AuthContext);
-  console.log(propertyId);
+  //console.log(propertyId);
 
   const [loading, setLoading] = useState(true);
-  const [property, setProperty] = useState(null);
+  //const [property, setProperty] = useState(null);
 
   const [formData, setFormData] = useState({
     property_name: "",
@@ -19,15 +21,33 @@ const UpdateProperty = () => {
     location: "",
     image: "",
   });
-  console.log(property);
+  //  console.log(property);
 
   useEffect(() => {
     const loadProperty = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/property/${propertyId}`);
+        const res = await fetch(
+          `http://localhost:3000/property/${propertyId}`,
+          {
+            headers: {
+              authorization: `Bearer ${user.accessToken}`,
+            },
+          }
+        );
+
+        if (res.status === 401) {
+          toast.error("Please login to continue");
+          return;
+        }
+
+        if (res.status === 404) {
+          toast.error("Property not found");
+          return;
+        }
+
         const data = await res.json();
 
-        setProperty(data);
+        // setProperty(data);
 
         setFormData({
           property_name: data.property_name,
@@ -45,7 +65,8 @@ const UpdateProperty = () => {
     };
 
     loadProperty();
-  }, [propertyId]);
+  }, [propertyId, user?.accessToken]);
+  // console.log("property : ", property.user_email);
 
   // Handle input change
   const handleChange = (e) => {
@@ -68,19 +89,29 @@ const UpdateProperty = () => {
         }
       );
 
+      if (res.status === 401) {
+        toast.error("Please login to continue");
+        return;
+      }
+
+      if (res.status === 404) {
+        toast.error("Property not found");
+        return;
+      }
+      // console.log(property);
       const result = await res.json();
 
       if (result.updatedProperty) {
-        alert("Property updated successfully!");
+        toast.success("Property updated successfully!");
         navigate(`/property/${propertyId}`); // Redirect to details page
       }
     } catch (err) {
       console.error(err);
-      alert("Update failed.");
+      toast.error("Update failed.");
     }
   };
 
-  if (loading) return <p className="text-center p-10">Loading...</p>;
+  if (loading) return <Spinner></Spinner>;
 
   return (
     <div

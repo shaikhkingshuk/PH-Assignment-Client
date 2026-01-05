@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import RecentProperty from "./RecentProperty";
+import Spinner from "../Spinner";
 
-const RecentProperties = ({ data }) => {
+const RecentProperties = () => {
   const [recentData, setRecentData] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(data);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await data;
-        setRecentData(result);
+        const res = await fetch("http://localhost:3000/recentProperties");
+
+        if (!res.ok) throw new Error("Failed to fetch recent properties");
+
+        const data = await res.json();
+
+        setRecentData(data);
       } catch (err) {
         console.error("Error fetching recent properties:", err);
       } finally {
@@ -19,12 +24,16 @@ const RecentProperties = ({ data }) => {
     };
 
     fetchData();
-  }, [data]);
+  }, []);
 
   if (loading) {
+    return <Spinner></Spinner>;
+  }
+
+  if (recentData.length === 0) {
     return (
       <div className="w-full text-center py-10 text-gray-500">
-        Loading recent properties...
+        No recent properties found
       </div>
     );
   }

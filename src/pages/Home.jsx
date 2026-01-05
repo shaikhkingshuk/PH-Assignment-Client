@@ -6,16 +6,13 @@ import HomeSlider from "../components/HomePage/HomeSlider";
 import RecentProperties from "../components/HomePage/RecentProperties";
 
 const Home = () => {
-  const data = fetch("http://localhost:3000/recentProperties").then((val) =>
-    val.json()
-  );
   return (
     <>
-      <HomeSlider></HomeSlider>
-      <WhyChooseUs></WhyChooseUs>
-      <RecentProperties data={data}></RecentProperties>
-      <OurAchievements></OurAchievements>
-      <OurServices></OurServices>
+      <HomeSlider />
+      <WhyChooseUs />
+      <RecentProperties />
+      <OurAchievements />
+      <OurServices />
     </>
   );
 };

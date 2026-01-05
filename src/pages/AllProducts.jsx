@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RecentProperty from "../components/HomePage/RecentProperty";
+import Spinner from "../components/Spinner";
 
 const AllProducts = () => {
   const [allProperties, setAllProperties] = useState([]);
@@ -43,11 +44,7 @@ const AllProducts = () => {
   }
 
   if (loading) {
-    return (
-      <div className="w-full text-center py-20 text-gray-500">
-        Loading properties...
-      </div>
-    );
+    return <Spinner></Spinner>;
   }
 
   return (

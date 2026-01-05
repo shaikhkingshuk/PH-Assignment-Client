@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
 
 const AddProperty = () => {
   const { user, theme } = useContext(AuthContext);
@@ -13,12 +14,16 @@ const AddProperty = () => {
     image: "",
   });
 
+  const [loading, setLoading] = useState(false); // loading state
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     const newProperty = {
       ...formData,
       user_name: user.displayName,
@@ -38,8 +43,20 @@ const AddProperty = () => {
 
       const data = await res.json();
 
-      if (data.insertedId) {
-        alert("Property added successfully!");
+      if (res.status === 401) {
+        toast.error("Please login to continue");
+        return;
+      }
+
+      if (res.status === 404) {
+        toast.error("Property not found");
+        return;
+      }
+
+      if (!res.ok) {
+        toast.error(data.message || "Failed to add property");
+      } else if (data.insertedId) {
+        toast.success("Property added successfully!");
         setFormData({
           property_name: "",
           description: "",
@@ -50,8 +67,10 @@ const AddProperty = () => {
         });
       }
     } catch (err) {
-      alert("Something went wrong!");
-      console.log(err);
+      console.error(err);
+      toast.error("Something went wrong while adding property!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -124,27 +143,30 @@ const AddProperty = () => {
           className="input input-bordered w-full"
           required
         />
+        {/* Read-only user info */}
         <input
           type="text"
           value={user.displayName}
           readOnly
-          className="input input-bordered w-full bg-gray-200 text-black"
+          className="input input-bordered w-full bg-gray-200 text-black cursor-not-allowed"
         />
         <input
           type="email"
           value={user.email}
           readOnly
-          className="input input-bordered w-full bg-gray-200 text-black"
+          className="input input-bordered w-full bg-gray-200 text-black cursor-not-allowed"
         />
+
         <button
           type="submit"
-          className={`btn border-none mt-4 ${
+          disabled={loading}
+          className={`btn border-none mt-4 transition-transform w-full ${
             theme === "light"
-              ? "bg-zinc-700 hover:bg-zinc-900 hover:scale-102 transition-transform text-white"
-              : "bg-blue-700 hover:bg-blue-900 hover:scale-102 transition-transform text-white"
-          }`}
+              ? "bg-zinc-700 hover:bg-zinc-900 text-white"
+              : "bg-blue-700 hover:bg-blue-900 text-white"
+          } ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
         >
-          Add Property
+          {loading ? "Adding..." : "Add Property"}
         </button>
       </form>
     </div>
