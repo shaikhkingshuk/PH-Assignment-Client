@@ -9,7 +9,9 @@ const RecentProperties = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/recentProperties");
+        const res = await fetch(
+          "https://homenest-server.onrender.com/recentProperties"
+        );
 
         if (!res.ok) throw new Error("Failed to fetch recent properties");
 

@@ -32,14 +32,17 @@ const AddProperty = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/addNewProperty", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${user?.accessToken}`,
-        },
-        body: JSON.stringify(newProperty),
-      });
+      const res = await fetch(
+        "https://homenest-server.onrender.com/addNewProperty",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${user?.accessToken}`,
+          },
+          body: JSON.stringify(newProperty),
+        }
+      );
 
       const data = await res.json();
 
@@ -113,8 +116,6 @@ const AddProperty = () => {
           <option value="">Select Category</option>
           <option value="rent">Rent</option>
           <option value="sale">Sale</option>
-          <option value="commercial">Commercial</option>
-          <option value="land">Land</option>
         </select>
         <input
           type="number"

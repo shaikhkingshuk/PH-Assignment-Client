@@ -10,6 +10,7 @@ import RatingsList from "../components/RatingsList";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import PrivateRoute from "../privateRoute/PrivateRoute";
+import ErrorPage from "../components/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage></ErrorPage>,
   },
 ]);
 

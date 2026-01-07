@@ -22,7 +22,7 @@ const ViewProperty = () => {
       setLoadingProperty(true);
       try {
         const res = await fetch(
-          `http://localhost:3000/property/${propertyId}`,
+          `https://homenest-server.onrender.com/property/${propertyId}`,
           {
             headers: { authorization: `Bearer ${user.accessToken}` },
           }
@@ -54,7 +54,7 @@ const ViewProperty = () => {
     setLoadingReviews(true);
     try {
       const res = await fetch(
-        `http://localhost:3000/property/reveiw/${propertyId}`,
+        `https://homenest-server.onrender.com/property/reveiw/${propertyId}`,
         {
           headers: { authorization: `Bearer ${user.accessToken}` },
         }
@@ -101,14 +101,17 @@ const ViewProperty = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/property/addReview", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${user?.accessToken}`,
-        },
-        body: JSON.stringify(reviewData),
-      });
+      const res = await fetch(
+        "https://homenest-server.onrender.com/property/addReview",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${user?.accessToken}`,
+          },
+          body: JSON.stringify(reviewData),
+        }
+      );
 
       if (res.status === 401) {
         toast.error("Please login to continue");

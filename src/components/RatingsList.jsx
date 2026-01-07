@@ -16,7 +16,7 @@ const RatingsList = () => {
     const loadRatings = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/myProductsRatings/${user.email}`,
+          `https://homenest-server.onrender.com/myProductsRatings/${user.email}`,
           {
             headers: {
               authorization: `Bearer ${user.accessToken}`,

@@ -1,13 +1,9 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-  FaLinkedinIn,
-} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import logo from "../assets/logo.png";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   const { theme } = useContext(AuthContext);
@@ -37,7 +33,7 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-3">Contact</h3>
           <ul className="space-y-2 text-sm">
-            <li>Email: support@propertyhub.com</li>
+            <li>Email: support@homenest.com</li>
             <li>Phone: +880 1799-666666</li>
             <li>Location: Dhaka, Bangladesh</li>
           </ul>
@@ -80,7 +76,7 @@ const Footer = () => {
               href="#"
               className="p-2 rounded-full bg-blue-700 text-white hover:scale-110 transition-transform"
             >
-              <FaTwitter />
+              <FaXTwitter></FaXTwitter>
             </a>
             <a
               href="#"

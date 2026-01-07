@@ -27,7 +27,7 @@ const UpdateProperty = () => {
     const loadProperty = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/property/${propertyId}`,
+          `https://homenest-server.onrender.com/property/${propertyId}`,
           {
             headers: {
               authorization: `Bearer ${user.accessToken}`,
@@ -78,7 +78,7 @@ const UpdateProperty = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/updateProperty/${propertyId}`,
+        `https://homenest-server.onrender.com/updateProperty/${propertyId}`,
         {
           method: "PUT",
           headers: {

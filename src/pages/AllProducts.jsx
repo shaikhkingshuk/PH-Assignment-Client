@@ -11,7 +11,9 @@ const AllProducts = () => {
   useEffect(() => {
     const fetchAllProperties = async () => {
       try {
-        const response = await fetch("http://localhost:3000/allProperties");
+        const response = await fetch(
+          "https://homenest-server.onrender.com/allProperties"
+        );
         const data = await response.json();
         setAllProperties(data);
       } catch (err) {

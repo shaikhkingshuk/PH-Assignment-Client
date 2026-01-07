@@ -10,13 +10,13 @@ const MyProperties = () => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const borderColor = theme === "light" ? "border-gray-700" : "border-zinc-300";
-
+  // console.log(user);
   useEffect(() => {
     const fetchMyProperties = async () => {
       setLoading(true); // start loading
       try {
         const res = await fetch(
-          `http://localhost:3000/myProperties/${user.email}`,
+          `https://homenest-server.onrender.com/myProperties/${user.email}`,
           {
             headers: {
               authorization: `Bearer ${user.accessToken}`,
@@ -72,12 +72,15 @@ const MyProperties = () => {
 
     if (result.isConfirmed) {
       try {
-        const res = await fetch(`http://localhost:3000/properties/${id}`, {
-          method: "DELETE",
-          headers: {
-            authorization: `Bearer ${user?.accessToken}`,
-          },
-        });
+        const res = await fetch(
+          `https://homenest-server.onrender.com/properties/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${user?.accessToken}`,
+            },
+          }
+        );
 
         if (res.status === 401) {
           toast.error("Please login to continue");
@@ -91,11 +94,16 @@ const MyProperties = () => {
 
         const data = await res.json();
 
-        if (data.deletedCount > 0) {
-          setProperties(properties.filter((p) => p._id !== id));
-          Swal.fire("Deleted!", "Property has been deleted.", "success");
+        if (data.success) {
+          // remove property from state
+          setProperties((prev) => prev.filter((p) => p._id !== id));
+          Swal.fire("Deleted!", data.message, "success");
         } else {
-          Swal.fire("Error!", "Failed to delete property.", "error");
+          Swal.fire(
+            "Error!",
+            data.message || "Failed to delete property.",
+            "error"
+          );
         }
       } catch (err) {
         console.log(err);
@@ -105,7 +113,7 @@ const MyProperties = () => {
   };
 
   if (loading) {
-    return <Spinner></Spinner>;
+    return <Spinner />;
   }
 
   return (
@@ -156,7 +164,10 @@ const MyProperties = () => {
                   <td className="p-3 border border-gray-400 capitalize">
                     {p.category}
                   </td>
-                  <td className="p-3 border border-gray-400">${p.price}</td>
+                  <td className="p-3 border border-gray-400">
+                    <span className="text-2xl">৳ </span>
+                    {p.price}
+                  </td>
                   <td className="p-3 border border-gray-400">{p.location}</td>
                   <td className="p-3 border border-gray-400">
                     {new Date(p.posted_date).toLocaleDateString()}

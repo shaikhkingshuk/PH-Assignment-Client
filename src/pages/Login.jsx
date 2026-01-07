@@ -24,7 +24,10 @@ const Login = () => {
         toast.success("Logged in successfully");
         navigate(from);
       })
-      .catch((error) => toast.error(error.code));
+      .catch((error) => {
+        toast.error(error.code);
+        console.log(error);
+      });
   };
 
   // 🔹 Google Login

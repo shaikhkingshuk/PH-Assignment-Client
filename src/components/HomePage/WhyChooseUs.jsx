@@ -6,7 +6,7 @@ const WhyChooseUs = () => {
   return (
     <div
       className={`w-full py-16 px-6 md:px-12 lg:px-20   ${
-        theme === "light" ? "bg-white/50" : "bg-black/50 "
+        theme === "light" ? "bg-zinc-300/60" : "bg-black/50 "
       } `}
     >
       <div className="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-10">
