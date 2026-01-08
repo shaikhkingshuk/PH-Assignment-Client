@@ -67,9 +67,8 @@ const Register = () => {
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Register now!</h1>
           <p className="py-6">
-            Join our green community today! Discover, learn, and grow with us as
-            you start your journey toward a healthier and more beautiful living
-            space.
+            Be part of our growing property community and begin your journey
+            toward smarter and more comfortable living.
           </p>
         </div>
 
